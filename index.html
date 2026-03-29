@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Age Calculator - उम्र कैलकुलेटर</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Baloo 2',sans-serif;background:#fff8f0;min-height:100vh;color:#1a1a2e}
+header{background:linear-gradient(135deg,#FF6B00,#FF9933);color:white;text-align:center;padding:28px 20px}
+header h1{font-size:2rem;font-weight:800}
+header p{font-size:0.95rem;opacity:0.92;margin-top:4px}
+main{max-width:480px;margin:0 auto;padding:24px 16px}
+.card{background:white;border-radius:20px;padding:28px 24px;box-shadow:0 8px 32px rgba(255,107,0,0.15);margin-bottom:20px}
+.card h2{font-size:1.2rem;font-weight:700;color:#FF6B00;margin-bottom:20px}
+label{display:block;font-weight:600;font-size:0.95rem;margin-bottom:8px}
+input[type=date]{width:100%;padding:14px 16px;border:2px solid #ffe0c0;border-radius:12px;font-size:1rem;font-family:inherit;background:#fff8f0;outline:none;margin-bottom:16px}
+input[type=date]:focus{border-color:#FF6B00}
+.btn{width:100%;padding:16px;background:linear-gradient(135deg,#FF6B00,#FF9933);color:white;border:none;border-radius:14px;font-size:1.1rem;font-weight:700;font-family:inherit;cursor:pointer;box-shadow:0 4px 16px rgba(255,107,0,0.35)}
+.result-box{display:none;animation:fadeIn 0.4s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.result-box.show{display:block}
+.age-main{background:linear-gradient(135deg,#FF6B00,#FF9933);border-radius:18px;padding:24px;text-align:center;color:white;margin-bottom:16px}
+.age-main .big-num{font-size:4rem;font-weight:800;line-height:1}
+.age-main .label{font-size:1.1rem;opacity:0.9;margin-top:4px}
+.age-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:16px}
+.age-item{background:#fff8f0;border:2px solid #ffe0c0;border-radius:14px;padding:16px 8px;text-align:center}
+.age-item .num{font-size:1.6rem;font-weight:800;color:#FF6B00}
+.age-item .lbl{font-size:0.8rem;color:#666;margin-top:2px}
+.extra-info{background:#f0fff4;border:2px solid #b7f5c8;border-radius:14px;padding:16px}
+.extra-info p{font-size:0.92rem;padding:6px 0;border-bottom:1px solid #d4f5e0;display:flex;justify-content:space-between}
+.extra-info p:last-child{border-bottom:none}
+.extra-info span{font-weight:700;color:#138808}
+.error{background:#fff0f0;border:2px solid #ffcccc;border-radius:12px;padding:14px;color:#cc0000;font-weight:600;text-align:center;display:none;margin-bottom:16px}
+.error.show{display:block}
+.info-section{background:white;border-radius:20px;padding:24px;box-shadow:0 8px 32px rgba(255,107,0,0.15);margin-bottom:20px}
+.info-section h3{font-size:1.05rem;font-weight:700;color:#FF6B00;margin-bottom:12px}
+.info-section p{font-size:0.9rem;color:#666;line-height:1.7}
+footer{text-align:center;padding:20px;color:#666;font-size:0.85rem}
+</style>
+</head>
+<body>
+<header>
+<h1>🎂 उम्र कैलकुलेटर</h1>
+<p>Age Calculator - अपनी सटीक उम्र जानें</p>
+</header>
+<main>
+<div class="card">
+<h2>📅 जन्म तिथि डालें</h2>
+<label>आपकी जन्म तिथि (Date of Birth)</label>
+<input type="date" id="dob" max="">
+<label>किस तारीख तक?</label>
+<input type="date" id="toDate">
+<button class="btn" onclick="calculateAge()">🔍 उम्र निकालें</button>
+</div>
+<div class="error" id="error">❌ कृपया सही तारीख डालें!</div>
+<div class="result-box" id="result">
+<div class="age-main">
+<div class="big-num" id="years">0</div>
+<div class="label">साल की उम्र (Years Old)</div>
+</div>
+<div class="age-grid">
+<div class="age-item"><div class="num" id="res-years">0</div><div class="lbl">साल</div></div>
+<div class="age-item"><div class="num" id="res-months">0</div><div class="lbl">महीने</div></div>
+<div class="age-item"><div class="num" id="res-days">0</div><div class="lbl">दिन</div></div>
+</div>
+<div class="extra-info">
+<p>कुल दिन <span id="total-days">0</span></p>
+<p>कुल घंटे <span id="total-hours">0</span></p>
+<p>अगला जन्मदिन <span id="next-bday">-</span></p>
+</div>
+</div>
+<div class="info-section">
+<h3>Age Calculator क्या है?</h3>
+<p>यह free online tool है जिससे आप अपनी सटीक उम्र साल, महीने और दिनों में जान सकते हैं।</p>
+</div>
+<div class="info-section">
+<h3>इसका उपयोग कहाँ होता है?</h3>
+<p>सरकारी नौकरी form, school admission, passport और retirement calculate करने में।</p>
+</div>
+</main>
+<footer>© 2024 Age Calculator India | Free Online Tool</footer>
+<script>
+const today=new Date();
+const todayStr=today.toISOString().split('T')[0];
+document.getElementById('dob').max=todayStr;
+document.getElementById('toDate').value=todayStr;
+document.getElementById('toDate').max=todayStr;
+function calculateAge(){
+const dobVal=document.getElementById('dob').value;
+const toVal=document.getElementById('toDate').value;
+const errorEl=document.getElementById('error');
+const resultEl=document.getElementById('result');
+errorEl.classList.remove('show');
+resultEl.classList.remove('show');
+if(!dobVal){errorEl.classList.add('show');return;}
+const dob=new Date(dobVal);
+const toDate=new Date(toVal||todayStr);
+if(dob>toDate){errorEl.classList.add('show');return;}
+let years=toDate.getFullYear()-dob.getFullYear();
+let months=toDate.getMonth()-dob.getMonth();
+let days=toDate.getDate()-dob.getDate();
+if(days<0){months--;const prev=new Date(toDate.getFullYear(),toDate.getMonth(),0);days+=prev.getDate();}
+if(months<0){years--;months+=12;}
+const totalDays=Math.floor((toDate-dob)/(1000*60*60*24));
+const totalHours=totalDays*24;
+let nextBday=new Date(toDate.getFullYear(),dob.getMonth(),dob.getDate());
+if(nextBday<=toDate)nextBday.setFullYear(toDate.getFullYear()+1);
+const daysToNext=Math.ceil((nextBday-toDate)/(1000*60*60*24));
+document.getElementById('years').textContent=years;
+document.getElementById('res-years').textContent=years;
+document.getElementById('res-months').textContent=months;
+document.getElementById('res-days').textContent=days;
+document.getElementById('total-days').textContent=totalDays.toLocaleString();
+document.getElementById('total-hours').textContent=totalHours.toLocaleString();
+document.getElementById('next-bday').textContent=daysToNext+' दिन बाद';
+resultEl.classList.add('show');
+resultEl.scrollIntoView({behavior:'smooth',block:'start'});}
+</script>
+</body>
+</html>
