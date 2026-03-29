@@ -1,11 +1,36 @@
 <!DOCTYPE html>
-<html 
+<html lang="hi">
 <head>
-<meta name="google-site-verification" content="RvH9qtSyJ0V3AvKFf2JQv_VJgYa8hnu36WCDeaDxnso">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Age Calculator - उम्र कैलकुलेटर</title>
+<meta name="google-site-verification" content="RvH9qtSyJ0V3AvKFf2JQv_VJgYa8hnu36WCDeaDxnso">
+<title>Age Calculator - उम्र कैलकुलेटर | जन्म तिथि से उम्र निकालें Free</title>
+<meta name="description" content="Free Age Calculator in Hindi - अपनी सटीक उम्र साल, महीने और दिनों में जानें। Date of Birth डालो और तुरंत उम्र पता करो। Sarkari Naukri Age Calculator, DOB Calculator India.">
+<meta name="keywords" content="age calculator, उम्र कैलकुलेटर, age calculator in hindi, date of birth calculator, janm tithi se umar, umar calculator, age calculator india, sarkari naukri age calculator, dob calculator, free age calculator, age calculate kare, apni umar jane, age calculator online free, birthday calculator, how old am i calculator">
+<meta name="robots" content="index, follow">
+<meta name="author" content="FreeChek Age Calculator">
+<meta name="language" content="Hindi, English">
+<meta property="og:title" content="Age Calculator - उम्र कैलकुलेटर | Free Online Tool">
+<meta property="og:description" content="अपनी सटीक उम्र साल, महीने और दिनों में जानें। बिल्कुल Free!">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://freechek.github.io">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Age Calculator - उम्र कैलकुलेटर">
+<meta name="twitter:description" content="Free Age Calculator in Hindi - अपनी उम्र तुरंत जानें!">
+<link rel="canonical" href="https://freechek.github.io">
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;800&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Age Calculator - उम्र कैलकुलेटर",
+  "description": "Free Age Calculator in Hindi",
+  "url": "https://freechek.github.io",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any",
+  "offers": {"@type": "Offer", "price": "0", "priceCurrency": "INR"}
+}
+</script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:'Baloo 2',sans-serif;background:#fff8f0;min-height:100vh;color:#1a1a2e}
@@ -36,24 +61,30 @@ input[type=date]:focus{border-color:#FF6B00}
 .error{background:#fff0f0;border:2px solid #ffcccc;border-radius:12px;padding:14px;color:#cc0000;font-weight:600;text-align:center;display:none;margin-bottom:16px}
 .error.show{display:block}
 .info-section{background:white;border-radius:20px;padding:24px;box-shadow:0 8px 32px rgba(255,107,0,0.15);margin-bottom:20px}
-.info-section h3{font-size:1.05rem;font-weight:700;color:#FF6B00;margin-bottom:12px}
+.info-section h2{font-size:1.05rem;font-weight:700;color:#FF6B00;margin-bottom:12px}
 .info-section p{font-size:0.9rem;color:#666;line-height:1.7}
+.faq{background:white;border-radius:20px;padding:24px;box-shadow:0 8px 32px rgba(255,107,0,0.15);margin-bottom:20px}
+.faq h2{font-size:1.05rem;font-weight:700;color:#FF6B00;margin-bottom:16px}
+.faq-item{border-bottom:1px solid #ffe0c0;padding:12px 0}
+.faq-item:last-child{border-bottom:none}
+.faq-item h3{font-size:0.95rem;font-weight:700;color:#1a1a2e;margin-bottom:6px}
+.faq-item p{font-size:0.88rem;color:#666;line-height:1.6}
 footer{text-align:center;padding:20px;color:#666;font-size:0.85rem}
-<meta name="google-site-verification" content="RvH9qtSyJ0V3AvKFf2JQv_VJgYa8hnu36WCDeaDxnso">
+</style>
 </head>
 <body>
 <header>
 <h1>🎂 उम्र कैलकुलेटर</h1>
-<p>Age Calculator - अपनी सटीक उम्र जानें</p>
+<p>Age Calculator - अपनी सटीक उम्र जानें | बिल्कुल Free!</p>
 </header>
 <main>
 <div class="card">
-<h2>📅 जन्म तिथि डालें</h2>
-<label>आपकी जन्म तिथि (Date of Birth)</label>
+<h2>📅 जन्म तिथि डालें (Date of Birth)</h2>
+<label>आपकी जन्म तिथि</label>
 <input type="date" id="dob" max="">
-<label>किस तारीख तक?</label>
+<label>किस तारीख तक उम्र निकालें?</label>
 <input type="date" id="toDate">
-<button class="btn" onclick="calculateAge()">🔍 उम्र निकालें</button>
+<button class="btn" onclick="calculateAge()">🔍 उम्र निकालें - Calculate Age</button>
 </div>
 <div class="error" id="error">❌ कृपया सही तारीख डालें!</div>
 <div class="result-box" id="result">
@@ -62,26 +93,41 @@ footer{text-align:center;padding:20px;color:#666;font-size:0.85rem}
 <div class="label">साल की उम्र (Years Old)</div>
 </div>
 <div class="age-grid">
-<div class="age-item"><div class="num" id="res-years">0</div><div class="lbl">साल</div></div>
-<div class="age-item"><div class="num" id="res-months">0</div><div class="lbl">महीने</div></div>
-<div class="age-item"><div class="num" id="res-days">0</div><div class="lbl">दिन</div></div>
+<div class="age-item"><div class="num" id="res-years">0</div><div class="lbl">साल (Years)</div></div>
+<div class="age-item"><div class="num" id="res-months">0</div><div class="lbl">महीने (Months)</div></div>
+<div class="age-item"><div class="num" id="res-days">0</div><div class="lbl">दिन (Days)</div></div>
 </div>
 <div class="extra-info">
-<p>कुल दिन <span id="total-days">0</span></p>
-<p>कुल घंटे <span id="total-hours">0</span></p>
-<p>अगला जन्मदिन <span id="next-bday">-</span></p>
+<p>कुल दिन (Total Days) <span id="total-days">0</span></p>
+<p>कुल घंटे (Total Hours) <span id="total-hours">0</span></p>
+<p>अगला जन्मदिन (Next Birthday) <span id="next-bday">-</span></p>
 </div>
 </div>
 <div class="info-section">
-<h3>Age Calculator क्या है?</h3>
-<p>यह free online tool है जिससे आप अपनी सटीक उम्र साल, महीने और दिनों में जान सकते हैं।</p>
+<h2>Age Calculator क्या है? | उम्र कैलकुलेटर</h2>
+<p>यह एक free online Age Calculator tool है। इसमें अपनी Date of Birth (जन्म तिथि) डालें और तुरंत अपनी सटीक उम्र साल, महीने और दिनों में जानें। यह tool बिल्कुल free है और mobile पर भी काम करता है।</p>
 </div>
 <div class="info-section">
-<h3>इसका उपयोग कहाँ होता है?</h3>
-<p>सरकारी नौकरी form, school admission, passport और retirement calculate करने में।</p>
+<h2>Age Calculator का उपयोग कहाँ होता है?</h2>
+<p>सरकारी नौकरी (Sarkari Naukri) के form भरने में, school और college admission में, passport बनाने में, Aadhar card में उम्र check करने में, और retirement calculate करने में Age Calculator बहुत काम आता है।</p>
+</div>
+<div class="faq">
+<h2>अक्सर पूछे जाने वाले सवाल (FAQ)</h2>
+<div class="faq-item">
+<h3>Age Calculator में क्या डालना होता है?</h3>
+<p>सिर्फ अपनी Date of Birth (जन्म तिथि) डालें और Calculate बटन दबाएं।</p>
+</div>
+<div class="faq-item">
+<h3>क्या यह Age Calculator बिल्कुल free है?</h3>
+<p>हाँ, यह 100% free है। कोई charge नहीं।</p>
+</div>
+<div class="faq-item">
+<h3>Sarkari Naukri के लिए Age कैसे calculate करें?</h3>
+<p>अपनी DOB डालें और last date of application select करें।</p>
+</div>
 </div>
 </main>
-<footer>© 2024 Age Calculator India | Free Online Tool</footer>
+<footer>© 2024 FreeChek Age Calculator India | Free Online Tool | उम्र कैलकुलेटर</footer>
 <script>
 const today=new Date();
 const todayStr=today.toISOString().split('T')[0];
